@@ -1,0 +1,64 @@
+/* style.css – v2025-10-15 */
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0b0c10;
+  color: #c5c6c7;
+}
+
+header {
+  background-color: #1f2833;
+  padding: 10px 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-weight: bold;
+  color: #d4af37;
+  font-size: 1.4em;
+}
+
+.hero {
+  height: 80vh;
+  background: radial-gradient(circle at center, #1f2833 0%, #0b0c10 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #d4af37;
+}
+
+.hero-logo {
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.legacy {
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+}
+
+footer {
+  background-color: #1f2833;
+  text-align: center;
+  padding: 20px;
+  color: #c5c6c7;
+}
+
+footer a {
+  color: #d4af37;
+  text-decoration: none;
+}
