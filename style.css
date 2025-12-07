@@ -1,145 +1,122 @@
-/* style.css – v2025-10-15.1 */
-body {
+/* Reset + Basics */
+* {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background-color: #0b0c10;
-  color: #c5c6c7;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Header / Brand */
-header {
-  background-color: #1f2833;
-  padding: 10px 20px;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+  background-color: #f9f9f9;
+  line-height: 1.6;
 }
-.brand {
+
+a {
+  color: #a6751e;
+  text-decoration: none;
+}
+
+/* Header & Nav */
+header {
+  background-color: #111;
+  padding: 1rem;
+}
+
+nav .brand {
   display: flex;
   align-items: center;
 }
+
 .logo {
   height: 50px;
-  width: auto;
-  margin-right: 10px;
-}
-.brand-name {
-  font-weight: bold;
-  color: #d4af37;
-  font-size: 1.4em;
+  margin-right: 1rem;
 }
 
-/* Hero */
+.brand-name {
+  color: #f4c25b;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Hero Section */
 .hero {
-  height: 80vh;
-  background: radial-gradient(circle at center, #1f2833 0%, #0b0c10 100%);
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #d4af37;
-}
-.hero-logo {
-  height: 120px;
-  margin-bottom: 20px;
+  color: white;
+  position: relative;
 }
 
-/* Legacy */
-.legacy {
-  padding: 60px 20px;
-  text-align: center;
-  max-width: 800px;
-  margin: auto;
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* Gallery */
-.gallery {
-  padding: 60px 20px;
-  text-align: center;
-}
-.gallery h2 {
-  color: #d4af37;
-  margin-bottom: 30px;
-}
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1000px;
-  margin: auto;
-}
-.gallery-grid img {
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease;
-}
-.gallery-grid img:hover {
-  transform: scale(1.03);
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
 }
 
-/* Products / Catalog */
-.products {
-  padding: 60px 20px;
-  text-align: center;
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
-.products h2 {
-  color: #d4af37;
-  margin-bottom: 20px;
+
+.hero-content p {
+  font-size: 1.2rem;
 }
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1000px;
-  margin: auto;
+
+/* Sections */
+section {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
-.product-card {
-  background-color: #1f2833;
-  border-radius: 10px;
-  padding: 20px;
-  color: #c5c6c7;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
 }
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+
+ul {
+  list-style: none;
 }
-.product-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 15px;
+
+ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
-.product-card h3 {
-  color: #d4af37;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-.product-card button {
-  background-color: #d4af37;
-  color: #0b0c10;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+
+/* Button */
+.cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #c78b2a;
+  color: #fff;
+  border-radius: 4px;
   font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.product-card button:hover {
-  background-color: #fff;
-  color: #0b0c10;
+
+.cta-button:hover {
+  background-color: #a6751e;
 }
 
 /* Footer */
 footer {
-  background-color: #1f2833;
   text-align: center;
-  padding: 20px;
-  color: #c5c6c7;
-}
-footer a {
-  color: #d4af37;
-  text-decoration: none;
-}
-footer a:hover {
-  text-decoration: underline;
+  padding: 2rem 1rem;
+  background-color: #111;
+  color: #ccc;
+  font-size: 0.9rem;
 }
