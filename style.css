@@ -330,12 +330,20 @@ footer{
   position: relative;
 }
 
-.service .media img{
+.service .media {
+  height: 280px;
+  overflow: hidden;
+}
+
+.service .media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   position: relative;
   z-index: 1;
+  border-radius: var(--radius-sm);
+}
+
 }
 
 /* diagonal separator plate — LIGHTER + NARROWER + GRADIENT */
