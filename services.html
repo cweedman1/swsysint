@@ -5,114 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Services | Southwest Systems Integrators</title>
 
-  <!-- keep light until final meta pass -->
+  <!-- Meta placeholder for production cleanup -->
   <meta name="robots" content="noindex,nofollow"/>
-
   <link rel="stylesheet" href="style.css"/>
-
-  <style>
-    .hero-landing{
-      position: relative;
-      padding: 4.5rem var(--pad) 3.5rem;
-      background: linear-gradient(to right, #111, #2a2a2a);
-      overflow: hidden;
-      text-align: center;
-    }
-    .hero-landing::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.78)),
-        url('images/hero_services.webp') center/cover no-repeat;
-      transform: scale(1.02);
-    }
-    .hero-landing .inner{
-      position: relative;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 var(--pad);
-    }
-    .hero-landing h1{
-      color: var(--gold);
-      font-size: clamp(2.2rem, 3.2vw, 3.3rem);
-      font-weight: 950;
-      text-shadow: 1px 1px 3px #000;
-    }
-    .hero-landing p{
-      margin-top: .85rem;
-      color: rgba(255,255,255,0.88);
-      font-size: clamp(1.05rem, 1.5vw, 1.35rem);
-      max-width: 70ch;
-      margin-left:auto;
-      margin-right:auto;
-    }
-    .cta-row{
-      margin-top: 1.4rem;
-      display:flex;
-      flex-wrap:wrap;
-      gap:.85rem;
-      justify-content:center;
-    }
-    .btn-primary, .btn-ghost{
-      display:inline-block;
-      padding:.85rem 1.1rem;
-      border-radius: 12px;
-      font-weight: 950;
-      text-decoration:none;
-      letter-spacing:.2px;
-    }
-    .btn-primary{
-      border:1px solid rgba(255,196,0,0.55);
-      background: rgba(255,196,0,0.18);
-      color: var(--gold);
-    }
-    .btn-ghost{
-      border:1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.30);
-      color: rgba(255,255,255,0.9);
-    }
-    .rail-notes{
-      background: rgba(17,17,17,0.38);
-      border: 1px solid rgba(255,196,0,0.18);
-      border-radius: var(--radius);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
-      padding: 1.15rem 1.2rem;
-      max-width: 520px;
-    }
-    .rail-notes p{
-      margin-top: .6rem;
-      color: rgba(255,255,255,0.86);
-      font-weight: 650;
-      line-height: 1.65;
-    }
-    .rail-notes ul{
-      margin-top: .75rem;
-      margin-left: 1.1rem;
-      color: rgba(255,255,255,0.88);
-      font-weight: 650;
-      line-height: 1.65;
-    }
-    .rail-notes li{ margin: .25rem 0; }
-    .services-rail{ padding: 3.75rem 0; }
-    .service{ margin: 0 0 2.1rem; }
-    @media (max-width: 1024px){
-      .rail-notes{ max-width: 100%; }
-    }
-  </style>
 </head>
 
 <body>
-
+  <!-- HEADER -->
   <header class="navbar">
     <div class="logo"><img src="images/ssi_logo.webp" alt="SSI Logo"></div>
     <nav class="nav-links">
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="services.html">Services</a>
-      <a href="legacy.html">Legacy</a>
-      <a href="contact.html">Contact</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="conveyors.html">Conveyors</a>
+      <a href="equipment.html">Equipment</a>
       <a href="catalog/index.html">Catalog</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -120,9 +28,7 @@
   <section class="hero-landing">
     <div class="inner">
       <h1>Engineering & Field Services</h1>
-      <p>
-        Design, installation, fabrication, controls, and retrofit work — built for uptime, safety, and real-world plant conditions.
-      </p>
+      <p>Design, installation, fabrication, controls, and retrofit work — built for uptime, safety, and real-world plant conditions.</p>
       <div class="cta-row">
         <a class="btn-primary" href="contact.html">Request a Quote →</a>
         <a class="btn-ghost" href="conveyors.html">Conveyors</a>
@@ -131,10 +37,37 @@
     </div>
   </section>
 
-  <!-- SERVICES RAIL -->
+  <!-- SERVICES -->
   <main class="container section services-rail">
-    <!-- your article blocks (same as before, unchanged) -->
-    <!-- ... all 6 services go here as you already have them ... -->
+    <article class="service fade-in">
+      <div class="rail-notes">
+        <span class="badge">Design</span>
+        <p>We design systems that run clean in production — not just on paper.</p>
+        <ul>
+          <li>Throughput + flow modeling</li>
+          <li>Integration-aware layouts</li>
+          <li>Maintenance-first design</li>
+        </ul>
+      </div>
+      <div class="node" aria-hidden="true"></div>
+      <div class="slab">
+        <div class="media">
+          <img src="images/system_design_services.webp" alt="System Design">
+        </div>
+        <div class="content">
+          <span class="badge">Design</span>
+          <h3>System Design</h3>
+          <p>Tailored solutions for complex environments. We design for throughput, integration, and ease of maintenance — not just aesthetics.</p>
+          <ul>
+            <li>Throughput + flow modeling</li>
+            <li>Integration-aware layouts</li>
+            <li>Maintenance-first design</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Copy and paste your other service slabs here -->
   </main>
 
   <footer>
@@ -143,6 +76,5 @@
 
   <!-- ✅ External script to bypass GitHub CSP -->
   <script src="scripts.js" defer></script>
-
 </body>
 </html>
