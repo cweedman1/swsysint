@@ -1,0 +1,313 @@
+<!-- equipment.html (Rough Scaffold Test - matches conveyors.html layout) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Industrial Equipment & Automation | Southwest Systems Integrators</title>
+
+  <!-- Keep meta light for scaffold test -->
+  <meta name="robots" content="noindex,nofollow"/>
+
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Scaffold-only helpers (safe to delete later) */
+    .hero-landing{
+      position: relative;
+      padding: 4.5rem var(--pad) 3.5rem;
+      background: linear-gradient(to right, #111, #2a2a2a);
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero-landing::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+        url('images/landing/equip_hero.webp') center/cover no-repeat;
+      opacity: 1;
+      transform: scale(1.02);
+    }
+    .hero-landing .inner{
+      position: relative;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+    .hero-landing h1{
+      color: var(--gold);
+      font-size: clamp(2.2rem, 3.2vw, 3.3rem);
+      font-weight: 950;
+      text-shadow: 1px 1px 3px #000;
+    }
+    .hero-landing p{
+      margin-top: .85rem;
+      color: rgba(255,255,255,0.88);
+      font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+      max-width: 70ch;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .cta-row{
+      margin-top: 1.4rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:.85rem;
+      justify-content:center;
+    }
+    .btn-primary, .btn-ghost{
+      display:inline-block;
+      padding:.85rem 1.1rem;
+      border-radius: 12px;
+      font-weight: 950;
+      text-decoration:none;
+      letter-spacing:.2px;
+    }
+    .btn-primary{
+      border:1px solid rgba(255,196,0,0.55);
+      background: rgba(255,196,0,0.18);
+      color: var(--gold);
+    }
+    .btn-ghost{
+      border:1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.30);
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Image quality test grid */
+    .grid-landing{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .grid-card{
+      background: var(--steel-overlay);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height: 320px;
+    }
+    .grid-card .imgwrap{
+      padding: .9rem;
+      display:grid;
+      place-items:center;
+      background: rgba(0,0,0,0.15);
+      border-bottom: 1px solid rgba(255,196,0,0.14);
+      min-height: 200px; /* forces us to see if small images look OK */
+    }
+    .grid-card img{
+      width: 100%;
+      max-width: 520px;         /* prevents tiny images from stretching too wide */
+      max-height: 220px;        /* keeps consistency */
+      object-fit: contain;      /* shows true resolution quality */
+      border-radius: 14px;
+      border: 1px solid rgba(255,196,0,0.22);
+      background: rgba(0,0,0,0.25);
+    }
+    .grid-card .content{
+      padding: 1rem 1.1rem 1.15rem;
+    }
+    .grid-card h3{
+      color: var(--gold);
+      font-size: 1.25rem;
+      font-weight: 900;
+      margin-bottom: .35rem;
+    }
+    .grid-card p{
+      color: rgba(255,255,255,0.88);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Simple capability bullets */
+    .cap-box{
+      margin-top: 2rem;
+    }
+    .cap-box ul{
+      margin-top: .8rem;
+      margin-left: 1.25rem;
+      color: rgba(255,255,255,0.88);
+      font-weight: 650;
+    }
+    .cap-box li{ margin: .35rem 0; }
+
+    /* Partner logos strip (credential style) */
+    .partners{
+      margin-top: 2.2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,196,0,0.18);
+    }
+    .partner-logos{
+      margin-top: .9rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 1rem 1.4rem;
+      align-items:center;
+    }
+    .partner-logos img{
+      max-height: 90px;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.95;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,196,0,0.10);
+      border-radius: 12px;
+      padding: .35rem .55rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid-landing{ grid-template-columns: 1fr; }
+      .grid-card{ min-height: auto; }
+      .grid-card .imgwrap{ min-height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo"><img src="images/ssi_logo.webp" alt="SSI Logo"></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="legacy.html">Legacy</a>
+      <a href="contact.html">Contact</a>
+      <a href="catalog/index.html">Catalog</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero-landing">
+    <div class="inner">
+      <h1>Industrial Equipment & Automation</h1>
+      <p>
+        Packaging and material handling equipment — sourcing, integration, installation, modernization, and service support from a team that’s lived in plants.
+      </p>
+      <div class="cta-row">
+        <a class="btn-primary" href="contact.html">Request a Quote →</a>
+        <a class="btn-ghost" href="services.html">See Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <main class="container section">
+
+    <div class="panel panel-pad">
+      <span class="badge">Quick View</span>
+      <h2 class="section-title" style="margin-top:.6rem;">Equipment We Support</h2>
+      <p class="section-subtitle">
+        This is a visual test grid to judge whether your current equipment image sizes look professional in context.
+      </p>
+
+      <!-- 2x3 grid using your 6 equipment images -->
+      <div class="grid-landing">
+        <article class="grid-card">
+          <div class="imgwrap">
+            <img src="images/landing/equip_combo_erector_packer.webp" alt="Case erector / packer" loading="lazy" decoding="async">
+          </div>
+          <div class="content">
+            <h3>Case Erectors & Packers</h3>
+            <p>End-of-line case handling: erect, pack, seal, and convey.</p>
+          </div>
+        </article>
+
+        <article class="grid-card">
+          <div class="imgwrap">
+            <img src="images/landing/equip_robotic_palletizer.webp" alt="Palletizer" loading="lazy" decoding="async">
+          </div>
+          <div class="content">
+            <h3>Palletizers</h3>
+            <p>Conventional and robotic palletizing cells and integration.</p>
+          </div>
+        </article>
+
+        <article class="grid-card">
+          <div class="imgwrap">
+            <img src="images/landing/equip_case_sealer.webp" alt="Case Sealers" loading="lazy" decoding="async">
+          </div>
+          <div class="content">
+            <h3>Automatic Sealers</h3>
+            <p>Case sealers are faster and produce more uniform cases than manual sealing operations.  </p>
+          </div>
+        </article>
+
+        <article class="grid-card">
+          <div class="imgwrap">
+            <img src="images/landing/equip_pneumatic_manipulator.webp" alt="Manipulator / lift assist" loading="lazy" decoding="async">
+          </div>
+          <div class="content">
+            <h3>Manipulators</h3>
+            <p>Ergonomic lift assists to reduce injury and increase throughput.</p>
+          </div>
+        </article>
+
+        <article class="grid-card">
+          <div class="imgwrap">
+            <img src="images/landing/equip_pallet_handling.webp" alt="Pallet conveyor / material handling" loading="lazy" decoding="async">
+          </div>
+          <div class="content">
+            <h3>Pallet Handling</h3>
+            <p>Pallet transport, transfers, accumulation, and integration.</p>
+          </div>
+        </article>
+
+        <article class="grid-card">
+          <div class="imgwrap">
+            <img src="images/landing/equip_case_erector.webp" alt="Case Erectors" loading="lazy" decoding="async">
+          </div>
+          <div class="content">
+            <h3>Case Erectors</h3>
+            <p>We offer several different case erectors from industry leading manufacturers.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Capabilities block -->
+      <div class="cap-box">
+        <span class="badge">Capabilities</span>
+        <h2 class="section-title" style="margin-top:.6rem;">Source • Integrate • Install • Modernize</h2>
+        <ul>
+          <li>Equipment sourcing (new and used) and application fit</li>
+          <li>Installation, relocation, and commissioning support</li>
+          <li>Controls and integration coordination (mechanical + electrical)</li>
+          <li>System upgrades, retrofits, and performance improvements</li>
+        </ul>
+      </div>
+
+      <!-- Partner logos strip (optional) -->
+      <div class="partners">
+        <span class="badge">Our Partners</span>
+        <h2 class="section-title" style="margin-top:.6rem;">Trusted Manufacturers</h2>
+        <div class="partner-logos">
+          <!-- swap/add as needed -->
+          <img src="images/logos/logo_equip_itw_hartness.webp" alt="ITW Hartness" loading="lazy" decoding="async">
+          <img src="images/logos/logo_equip_strongarm.webp" alt="Strong Arm" loading="lazy" decoding="async">
+          <img src="images/logos/logo_equip_toptier.webp" alt="TopTier" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <!-- CTA footer -->
+      <div class="cta-row" style="margin-top: 1.8rem;">
+        <a class="btn-primary" href="contact.html">Request a Quote →</a>
+        <a class="btn-ghost" href="catalog/index.html">Browse Parts Catalog</a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Southwest Systems Integrators · Arlington, TX</p>
+  </footer>
+
+</body>
+</html>
