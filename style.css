@@ -322,15 +322,12 @@ footer{
   min-height: 240px;
 }
 
-.service:nth-child(even) .slab{
+.service:nth-child(even) .slab {
   grid-template-columns: 1fr 320px;
 }
 
-.service .media{
-  position: relative;
-}
-
 .service .media {
+  position: relative;
   max-height: 220px;
   overflow: hidden;
   flex-shrink: 0;
@@ -344,25 +341,22 @@ footer{
   display: block;
 }
 
-
-}
-
 /* diagonal separator plate — LIGHTER + NARROWER + GRADIENT */
-.service .media::after{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  right:-24px;
+.service .media::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -24px;
   width: 46px;
   background: linear-gradient(
     to right,
-    rgba(17,17,17,0.15),
-    rgba(17,17,17,0.45)
+    rgba(17, 17, 17, 0.15),
+    rgba(17, 17, 17, 0.45)
   );
   transform: skewX(-10deg);
-  border-left: 1px solid rgba(255,196,0,0.35);
-  pointer-events:none;
+  border-left: 1px solid rgba(255, 196, 0, 0.35);
+  pointer-events: none;
   z-index: 0;
 }
 
