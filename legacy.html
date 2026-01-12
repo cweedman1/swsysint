@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact | Southwest Systems Integrators</title>
+  <title>Our Legacy | Southwest Systems Integrators</title>
 
+  <!-- Keep light until final SEO pass -->
+  <meta name="robots" content="noindex,nofollow"/>
 
-
-  <link rel="stylesheet" href="style.css?v=20260112-1"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
@@ -18,189 +19,76 @@
         <img src="images/ssi_logo.webp" alt="SSI Logo">
       </a>
     </div>
-
     <nav class="nav-links" aria-label="Primary">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="conveyors.html">Conveyors</a>
       <a href="equipment.html">Equipment</a>
-      <a href="legacy.html">Legacy</a>
-      <a href="contact.html" aria-current="page">Contact</a>
+      <a href="legacy.html" aria-current="page">Legacy</a>
+      <a href="contact.html">Contact</a>
       <a href="catalog/index.html">Catalog</a>
     </nav>
   </header>
 
   <!-- Hero -->
-  <section class="hero-landing hero-contact">
+  <section class="hero-landing hero-legacy">
     <div class="inner">
-      <h1>Talk to an Integrator</h1>
+      <h1>Built on Experience. Proven in the Field.</h1>
       <p>
-        Quotes, service requests, and project questions — we respond fast and keep it practical.
+        Over 25 years of real-world system integration, earned trust, and long-term client relationships.
       </p>
-
-      <div class="cta-row">
-        <a class="btn-primary" href="#quote">Request a Quote →</a>
-        <a class="btn-ghost" href="catalog/index.html">Browse Parts Catalog</a>
-      </div>
     </div>
   </section>
 
-  <!-- Contact Body -->
+  <!-- Main Content -->
   <main class="container section">
 
-    <div class="panel panel-pad" id="quote">
-      <span class="badge">Contact</span>
-      <h2 class="section-title" style="margin-top:.6rem;">Request a Quote or Ask a Question</h2>
-      <p class="section-subtitle">
-        Tell us what you’re working on. The more detail you give, the faster we can help.
-      </p>
+    <div class="panel panel-pad">
+      <span class="badge">Our Story</span>
+      <h2 class="section-title" style="margin-top:.6rem;">
+        Who We Are, What We Do, and Why It Works
+      </h2>
 
-      <div class="contact-grid">
-        <!-- Form -->
-        <div class="contact-card">
-          <h3 class="contact-h3">Quick Quote Form</h3>
-          <p class="contact-muted">Preferred: include photos, drawings, part numbers, and site timing.</p>
+      <div class="prose">
+        <p>
+          Thank you for visiting our website. While you’re here, we want to share who we are, what we do, and why Southwest Systems Integrators has remained a trusted partner for more than 25 years.
+        </p>
 
-          <!-- PLUMBED: posts to Cloudflare Worker route -->
-          <form id="contactForm" class="quote-form" action="/api/contact" method="POST" novalidate>
-            <input type="hidden" name="page_url" value="https://swsysint.com/contact.html">
+        <p>
+          We are systems integrators with an extensive background in material handling systems, industrial equipment, and general contracting. Our experience spans a wide range of industries and applications — from food and beverage packaging conveyors to refuse handling systems, warehousing automation, overhead chain conveyors, and custom machine fabrication.
+        </p>
 
-            <!-- Honeypot (bots fill it, humans won't) -->
-            <input type="text" name="company_site" tabindex="-1" autocomplete="off"
-                   style="position:absolute; left:-9999px; height:0; width:0; opacity:0;"
-                   aria-hidden="true">
+        <p>
+          Beyond equipment and installation, we provide complete project management services. That includes system design, equipment sourcing, installation, maintenance support, and site preparation or modification. We don’t just install systems — we take responsibility for making them work in the real world.
+        </p>
 
-            <label>
-              Name
-              <input type="text" name="name" required autocomplete="name">
-            </label>
+        <p>
+          As manufacturer representatives, we are able to coordinate new equipment purchases efficiently and objectively. We also serve as exclusive distributors for select product lines, allowing us to support our clients from initial concept through long-term operation.
+        </p>
 
-            <label>
-              Company
-              <input type="text" name="company" autocomplete="organization">
-            </label>
+        <p>
+          Our driving principle is simple: <strong>your satisfaction.</strong> We aim to earn repeat customers by being the one resource you can rely on — whether the project is large or small, new or existing, planned or urgent.
+        </p>
 
-            <label>
-              Email
-              <input type="email" name="email" required autocomplete="email">
-            </label>
+        <p>
+          We believe long-term success is built on trust, accountability, and delivering systems that perform as promised. That philosophy has guided our work for decades, and it continues to define every project we take on today.
+        </p>
+      </div>
 
-            <label>
-              Phone
-              <input type="tel" name="phone" autocomplete="tel">
-            </label>
+      <!-- Optional legacy image -->
+      <div class="home-proof" style="margin-top:2rem;">
+        <img class="frame-img proof-left"
+             src="images/landing/legacy_1.webp"
+             alt="Early fabrication and system integration work">
 
-            <label>
-              What do you need?
-              <textarea name="message" rows="6" required
-                placeholder="Example: conveyor retrofit, palletizer install, controls troubleshooting, parts quote..."></textarea>
-            </label>
+        <img class="frame-img proof-right"
+             src="images/landing/legacy_2.webp"
+             alt="Field installation and system integration work">
+      </div>
 
-            <!-- Turnstile (same sitekey as catalog quote form) -->
-            <div class="turnstile-wrap">
-              <div class="cf-turnstile" data-sitekey="0x4AAAAAACLOW-AQC7bsi5gd"></div>
-            </div>
-
-            <button class="quote-btn" type="submit">Send Request →</button>
-
-            <p class="quote-consent">
-              We respond same or next business day. If it’s urgent, call and mention “time-sensitive.”
-            </p>
-
-            <!-- Inline status -->
-            <p id="contactStatus" class="quote-consent" style="display:none;"></p>
-          </form>
-
-          <!-- Turnstile script -->
-          <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-          <!-- AJAX submit (keeps user on-page + shows success/fail) -->
-          <script>
-          (function(){
-            const form = document.getElementById('contactForm');
-            const status = document.getElementById('contactStatus');
-            if(!form || !status) return;
-
-            function showStatus(msg){
-              status.style.display = 'block';
-              status.textContent = msg;
-            }
-
-            form.addEventListener('submit', async (e) => {
-              e.preventDefault();
-              showStatus('Sending…');
-
-              try{
-                const res = await fetch(form.action, {
-                  method: 'POST',
-                  body: new FormData(form),
-                  headers: { 'Accept': 'application/json' }
-                });
-
-                if(!res.ok){
-                  // Try to read response text for debugging if Worker returns something useful
-                  const t = await res.text().catch(()=> '');
-                  throw new Error(t || 'Request failed');
-                }
-
-                form.reset();
-
-                // Reset Turnstile widget (helps when staying on-page)
-                if (window.turnstile) {
-                  try { window.turnstile.reset(); } catch(_) {}
-                }
-
-                showStatus('✅ Message sent. We’ll get back to you shortly.');
-              }catch(err){
-                showStatus('⚠️ Something went wrong. Please try again, or email/call us directly.');
-              }
-            });
-          })();
-          </script>
-        </div>
-
-        <!-- Direct contact + trust -->
-        <div class="contact-card">
-          <h3 class="contact-h3">Direct Contact</h3>
-
-          <div class="contact-list">
-            <div class="contact-item">
-              <span class="contact-label">Location</span>
-              <span class="contact-value">Arlington, TX</span>
-            </div>
-
-            <div class="contact-item">
-              <span class="contact-label">Email</span>
-              <span class="contact-value">
-                <a href="mailto:info@swsysint.com">info@swsysint.com</a>
-              </span>
-            </div>
-
-            <div class="contact-item">
-              <span class="contact-label">Phone</span>
-              <span class="contact-value">
-                <a href="tel:+1-000-000-0000">(000) 000-0000</a>
-              </span>
-            </div>
-          </div>
-
-          <div class="contact-trust">
-            <span class="badge">What to Expect</span>
-            <ul>
-              <li>Clean work inside active plants</li>
-              <li>Uptime-first install and retrofit strategy</li>
-              <li>Coordination across mechanical + electrical + controls</li>
-              <li>Clear communication and practical timelines</li>
-              <li>Parts support through Richards-Wilcox catalog</li>
-            </ul>
-          </div>
-
-          <div class="cta-row" style="margin-top: 1.2rem; justify-content:flex-start;">
-            <a class="btn-primary" href="services.html">See Services →</a>
-            <a class="btn-ghost" href="conveyors.html">Conveyors</a>
-            <a class="btn-ghost" href="equipment.html">Equipment</a>
-          </div>
-        </div>
+      <div class="cta-row" style="margin-top:1.8rem;">
+        <a class="btn-primary" href="contact.html">Talk to an Integrator →</a>
+        <a class="btn-ghost" href="services.html">Our Services</a>
       </div>
 
     </div>
