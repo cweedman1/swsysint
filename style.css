@@ -275,6 +275,9 @@ strong{ font-weight: 900; }
 .hero-conveyors{ --hero-image: url('images/landing/conv_hero.webp'); }
 .hero-equipment{ --hero-image: url('images/landing/equip_hero.webp'); }
 .hero-services{ --hero-image: url('images/hero_services.webp'); }
+.hero-legacy{ --hero-image: url('images/legacy_hero.webp'); }
+.hero-catalog{ --hero-image: url('images/catalog_hero.webp'); }
+.hero-contact{ --hero-image: url('images/contact_hero.webp'); }
 
 /* Home hero crop */
 .hero-home::before{ background-position: center 32%; }
@@ -610,6 +613,129 @@ strong{ font-weight: 900; }
 }
 
 /* =========================================================
+   CONTACT PAGE
+   ========================================================= */
+
+.hero-contact{ --hero-image: url('images/contact_hero.webp'); }
+
+/* Two-column layout */
+.contact-grid{
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.2rem;
+}
+
+.contact-card{
+  background: rgba(17,17,17,0.50);
+  border: 1px solid rgba(255,196,0,0.22);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.25rem 1.35rem;
+}
+
+.contact-h3{
+  color: var(--gold);
+  font-size: 1.45rem;
+  font-weight: 950;
+  margin-bottom: .4rem;
+}
+
+.contact-muted{
+  color: rgba(255,255,255,0.86);
+  margin-bottom: 1rem;
+}
+
+/* Direct contact list */
+.contact-list{
+  display: grid;
+  gap: .75rem;
+  margin-top: .9rem;
+}
+
+.contact-item{
+  display: grid;
+  gap: .15rem;
+  padding: .75rem .85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,196,0,0.15);
+  background: rgba(0,0,0,0.22);
+}
+
+.contact-label{
+  font-weight: 900;
+  color: rgba(255,255,255,0.78);
+  letter-spacing: .3px;
+  font-size: .95rem;
+}
+
+.contact-value{
+  color: rgba(255,255,255,0.95);
+  font-weight: 700;
+}
+
+.contact-value a{
+  color: rgba(255,255,255,0.95);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+.contact-value a:hover{
+  color: var(--gold);
+  border-bottom-color: rgba(255,196,0,0.55);
+}
+
+/* Trust box */
+.contact-trust{
+  margin-top: 1.2rem;
+}
+.contact-trust ul{
+  margin-top: .75rem;
+  margin-left: 1.2rem;
+  color: rgba(255,255,255,0.90);
+  font-weight: 650;
+  line-height: 1.75;
+}
+.contact-trust li{ margin: .25rem 0; }
+
+@media (max-width: 980px){
+  .contact-grid{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   FINAL PATCH — NAV / RESPONSIVE POLISH
+   Paste at bottom of style.css
+   ========================================================= */
+
+.navbar{
+  gap: 1rem;
+}
+
+.nav-links{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: .55rem 1.1rem;
+}
+
+.nav-links a{
+  margin-left: 0;               /* gaps handle spacing */
+  padding: .35rem .25rem;       /* increases click area */
+  border-radius: 10px;
+}
+
+@media (max-width: 860px){
+  .navbar{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .nav-links{
+    justify-content: center;
+  }
+}
+
+/* =========================================================
    CATALOG — Quote + Gallery + Sticky CTA
    ========================================================= */
 
@@ -667,6 +793,47 @@ strong{ font-weight: 900; }
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255,196,0,0.22);
   box-shadow: var(--shadow2);
+}
+/* =========================================================
+   FINAL PATCH — CATALOG TWEAKS
+   ========================================================= */
+
+.catalog-grid{
+  grid-template-columns: 260px 1fr; /* a touch more breathing room */
+}
+
+.catalog-thumb,
+.catalog-thumb-empty{
+  height: 190px;                  /* a little more presence */
+}
+
+.gallery-img{
+  height: 300px;                  /* slightly tighter default */
+}
+
+@media (max-width: 900px){
+  .catalog-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-thumb,
+  .catalog-thumb-empty{
+    height: 220px;
+  }
+
+  .gallery-img{
+    height: 260px;
+  }
+}
+
+@media (max-width: 520px){
+  .gallery-wrap{
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-img{
+    height: 240px;
+  }
 }
 
 /* Quote block */
@@ -743,6 +910,44 @@ strong{ font-weight: 900; }
   font-weight: 950;
   text-decoration: none;
   box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* =========================================================
+   FINAL PATCH — STICKY QUOTE CTA
+   ========================================================= */
+
+.sticky-quote{
+  padding: .95rem 1.15rem;
+  letter-spacing: .2px;
+}
+
+@media (max-width: 700px){
+  .sticky-quote{
+    right: 14px;
+    left: 14px;
+    bottom: 14px;
+    text-align: center;
+    border-radius: 16px;
+  }
+}
+/* =========================================================
+   FINAL PATCH — A11Y + MOTION
+   ========================================================= */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+  outline: 3px solid rgba(255,196,0,0.55);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 /* =========================================================
