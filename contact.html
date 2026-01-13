@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact | Southwest Systems Integrators</title>
-  <link rel="stylesheet" href="style.css?v=20260112-1"/>
+  <link rel="stylesheet" href="style.css?v=20260113-new"/>
 </head>
 <body>
 
@@ -12,88 +12,76 @@
     <h1>Contact Us</h1>
     <p>Use the form below to request a quote or ask a question.</p>
 
+    <!-- ✅ RED BOX to confirm new HTML is active -->
+    <div style="background-color:#cc0000; color:#fff; padding:0.75rem; margin-bottom:1rem;">
+      ✅ You are viewing the latest deployed contact.html — v20260113-new
+    </div>
+
     <form id="contactForm" action="/api/contact" method="POST">
-      <!-- Hidden inputs -->
       <input type="hidden" name="page_url" value="https://swsysint.com/contact.html">
       <input type="text" name="company_site" style="display:none;" autocomplete="off">
 
-      <!-- Name -->
       <label>
         Name<br>
-        <input type="text" name="name" required autocomplete="name">
+        <input type="text" name="name" required>
       </label><br><br>
 
-      <!-- Company -->
       <label>
         Company<br>
-        <input type="text" name="company" autocomplete="organization">
+        <input type="text" name="company">
       </label><br><br>
 
-      <!-- Email -->
       <label>
         Email<br>
-        <input type="email" name="email" required autocomplete="email">
+        <input type="email" name="email" required>
       </label><br><br>
 
-      <!-- Phone -->
       <label>
         Phone<br>
-        <input type="tel" name="phone" autocomplete="tel">
+        <input type="tel" name="phone">
       </label><br><br>
 
-      <!-- Message -->
       <label>
         What do you need?<br>
-        <textarea name="message" rows="6" required></textarea>
+        <textarea name="message" rows="5" required></textarea>
       </label><br><br>
 
-      <!-- Turnstile CAPTCHA -->
+      <!-- Cloudflare Turnstile -->
       <div class="cf-turnstile" data-sitekey="0x4AAAAAACLOW-AQC7bsi5gd"></div>
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-      <!-- Submit -->
+      <br>
       <button type="submit">Send</button>
     </form>
 
-    <!-- Status -->
-    <p id="formStatus" style="margin-top:1rem;"></p>
+    <p id="formStatus" style="margin-top:1rem; font-weight:bold;"></p>
 
-    <!-- JS -->
     <script>
-      document.getElementById('contactForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const form = e.target;
-        const status = document.getElementById('formStatus');
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Sending...';
 
-        // Check for Turnstile token
-        const tokenField = form.querySelector('input[name="cf-turnstile-response"]');
-        if (!tokenField || !tokenField.value) {
-          status.textContent = '⚠️ Please complete the verification.';
-          return;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        const result = await res.json();
+        if (result.ok) {
+          status.textContent = '✅ Message sent successfully.';
+          form.reset();
+          if (window.turnstile) turnstile.reset();
+        } else {
+          status.textContent = '❌ Error: ' + (result.error || 'Unknown issue.');
         }
-
-        status.textContent = 'Sending...';
-
-        try {
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
-
-          const result = await res.json();
-          if (result.ok) {
-            status.textContent = '✅ Message sent successfully.';
-            form.reset();
-            if (window.turnstile) window.turnstile.reset();
-          } else {
-            status.textContent = '❌ Error: ' + (result.error || 'Something went wrong.');
-          }
-
-        } catch (err) {
-          status.textContent = '⚠️ Failed to send. Try again later.';
-        }
-      });
+      } catch (err) {
+        status.textContent = '⚠️ Failed to send. Try again later.';
+      }
+    });
     </script>
   </main>
 
