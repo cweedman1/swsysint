@@ -2,21 +2,64 @@
 (function () {
   "use strict";
 
-  // Fade-in animation: elements with .fade-in become visible on scroll
+  // Fade-in animation
   const faders = document.querySelectorAll(".fade-in");
-  if (!faders.length) return;
+  if (faders.length) {
+    const appearOnScroll = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    faders.forEach((el) => appearOnScroll.observe(el));
+  }
 
-  const appearOnScroll = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          obs.unobserve(entry.target);
+  // AJAX form submit + Turnstile reset
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("contactStatus");
+
+    if (!form || !status) return;
+
+    function showStatus(msg) {
+      status.style.display = "block";
+      status.textContent = msg;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      showStatus("Sending…");
+
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" }
+        });
+
+        if (!res.ok) {
+          const t = await res.text().catch(() => "");
+          throw new Error(t || "Request failed");
         }
-      });
-    },
-    { threshold: 0.2 }
-  );
 
-  faders.forEach((el) => appearOnScroll.observe(el));
+        form.reset();
+
+        // Reset Turnstile widget
+        if (window.turnstile) {
+          try {
+            window.turnstile.reset(); // for public site Turnstile
+          } catch (_) {}
+        }
+
+        showStatus("✅ Message sent. We’ll get back to you shortly.");
+      } catch (err) {
+        showStatus("⚠️ Something went wrong. Please try again, or email/call us directly.");
+      }
+    });
+  });
 })();
