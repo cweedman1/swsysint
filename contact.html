@@ -59,7 +59,7 @@
           <h3 class="contact-h3">Quick Quote Form</h3>
           <p class="contact-muted">Preferred: include photos, drawings, part numbers, and site timing.</p>
 
-          <form id="contactForm" class="quote-form" action="/api/contact" method="POST" novalidate>
+          <form id="contactForm" class="quote-form" action="https://formspree.io/f/xdaaaavj" method="POST" novalidate>
             <input type="hidden" name="page_url" value="https://swsysint.com/contact.html">
 
             <!-- Honeypot -->
@@ -144,5 +144,32 @@
   <footer>
     <p>© 2026 Southwest Systems Integrators · Arlington, TX</p>
   </footer>
+
+  <!-- Confirmation Handler -->
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        const statusEl = document.getElementById("contactStatus");
+        statusEl.style.display = "block";
+
+        if (response.ok) {
+          form.reset();
+          statusEl.textContent = "✅ Thank you! We’ve received your request.";
+        } else {
+          statusEl.textContent = "⚠️ Something went wrong. Please try again.";
+        }
+      }).catch(() => {
+        const statusEl = document.getElementById("contactStatus");
+        statusEl.style.display = "block";
+        statusEl.textContent = "❌ Error submitting the form.";
+      });
+    });
+  </script>
 </body>
 </html>
