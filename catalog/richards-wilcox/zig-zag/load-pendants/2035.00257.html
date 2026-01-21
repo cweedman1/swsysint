@@ -22,6 +22,7 @@
   <meta name="twitter:image" content="https://swsysint.com/images/catalog/richards-wilcox/2035.00257.jpg"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "sku": "2035.00257", "name": "2035.00257 Double Suspension Load Hook", "description": "2035 00257 Double Suspension Load Hook Capacity 150 lbs The load is suspended from two vertical load units increasing the capacity of the load carrier. Standard clevis pendants are attached to the conveyor chain on 6\" centers. The load hook revolves freely.", "brand": {"@type": "Brand", "name": "Richards-Wilcox"}, "url": "https://swsysint.com/catalog/richards-wilcox/zig-zag/load-pendants/2035.00257.html", "image": ["https://swsysint.com/images/catalog/richards-wilcox/2035.00257.jpg"], "category": "Load Pendants"}</script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="../../../../site.js" defer></script>
   <link rel="stylesheet" href="../../../../style.css"/>
 </head>
 <body>
@@ -43,7 +44,7 @@
   </nav>
 </header>
 
-<section class="hero-landing hero-catalog" style="background-image: url('../../../../images/landing/catalog_hero.webp');">
+<section class="hero-landing hero-catalog" style="background-image: url('../../../../images/catalog_hero.webp');">
   <div class="inner">
     <h1>2035.00257</h1>
     <p>Zig - Zag · Load Pendants · Richards-Wilcox</p>
@@ -124,64 +125,6 @@
     <p class="quote-consent">We respond same or next business day.</p>
     <p id="quoteStatus" class="quote-consent" style="display:none;"></p>
   </form>
-
-  <script>
-(function(){
-  const form = document.getElementById("quoteForm");
-  const btn = document.getElementById("quoteBtn");
-  const statusEl = document.getElementById("quoteStatus");
-  if(!form || !btn || !statusEl) return;
-
-  function showStatus(msg){
-    statusEl.style.display = "block";
-    statusEl.textContent = msg;
-  }
-
-  // Turnstile callbacks (global)
-  window.onTurnstileOk = function(){
-    btn.disabled = false;
-    statusEl.style.display = "none";
-  };
-  window.onTurnstileExpired = function(){
-    btn.disabled = true;
-    showStatus("⚠️ Verification expired. Please try again.");
-  };
-  window.onTurnstileError = function(){
-    btn.disabled = true;
-    showStatus("⚠️ Verification failed to load. Disable blockers or refresh.");
-  };
-
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-
-    if (true) {
-      const token = form.querySelector('input[name="cf-turnstile-response"]');
-      if(!token || !token.value){
-        btn.disabled = true;
-        showStatus("⚠️ Please complete the verification.");
-        return;
-      }
-    }
-
-    fetch(form.action, {
-      method: form.method,
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      statusEl.style.display = "block";
-      if (response.ok) {
-        form.reset();
-        btn.disabled = true;
-        showStatus("✅ Thank you! We’ve received your request.");
-      } else {
-        showStatus("⚠️ Something went wrong. Please try again.");
-      }
-    }).catch(() => {
-      showStatus("❌ Error submitting the form.");
-    });
-  });
-})();
-</script>
 </div>
   </div>
 </main>
@@ -192,48 +135,6 @@
     <img class="lightbox-img" id="lightboxImg" alt="Catalog image preview"/>
   </div>
 </div>
-
-<script>
-(function(){
-  const lb = document.getElementById('lightbox');
-  const img = document.getElementById('lightboxImg');
-  const closeBtn = lb ? lb.querySelector('.lightbox-close') : null;
-  if(!lb || !img || !closeBtn) return;
-
-  function openLightbox(src){
-    img.src = src;
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-    closeBtn.focus();
-  }
-
-  function closeLightbox(){
-    lb.classList.remove('open');
-    lb.setAttribute('aria-hidden','true');
-    img.src = '';
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('a[data-lightbox="1"]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      e.preventDefault();
-      const href = a.getAttribute('href');
-      if(href) openLightbox(href);
-    });
-  });
-
-  closeBtn.addEventListener('click', closeLightbox);
-
-  lb.addEventListener('click', (e)=>{
-    if(e.target === lb) closeLightbox();
-  });
-
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
-  });
-})();
-</script>
 
 <footer>
   <p>© 2026 Southwest Systems Integrators · Arlington, TX</p>
