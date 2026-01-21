@@ -5,14 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact | Southwest Systems Integrators</title>
 
+  <meta name="robots" content="index,follow"/>
+  <meta name="description" content="Request a quote or ask a question. Southwest Systems Integrators responds same or next business day for material handling, conveyors, equipment, and service support." />
+  <link rel="canonical" href="https://swsysint.com/contact.html"/>
+
+  <!-- Social -->
+  <meta property="og:title" content="Contact | Southwest Systems Integrators"/>
+  <meta property="og:description" content="Quotes, service requests, and project questions — we respond fast and keep it practical."/>
+  <meta property="og:url" content="https://swsysint.com/contact.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://swsysint.com/images/contact_hero.webp"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Contact | Southwest Systems Integrators"/>
+  <meta name="twitter:description" content="Quotes, service requests, and project questions — we respond fast and keep it practical."/>
+  <meta name="twitter:image" content="https://swsysint.com/images/contact_hero.webp"/>
+
+  <!-- Preload hero for LCP -->
   <link rel="preload" as="image" href="https://swsysint.com/images/contact_hero.webp" fetchpriority="high">
 
-  <link rel="stylesheet" href="style.css?v=20260112-1"/>
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css?v=20260121-1"/>
 
   <!-- Cloudflare Turnstile -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <!-- External Site Script (includes form logic + animations) -->
-  <script src="site.js?v=20260112-2" defer></script>
+
+  <!-- Shared site behaviors (AJAX forms + lightbox) -->
+  <script src="site.js?v=20260121-1" defer></script>
 </head>
 <body>
 
@@ -20,7 +39,7 @@
   <header class="navbar">
     <div class="logo">
       <a href="index.html" aria-label="Home">
-        <img src="images/ssi_logo.webp" alt="SSI Logo">
+        <img src="images/ssi_logo.webp" alt="SSI Logo" loading="eager" decoding="async">
       </a>
     </div>
 
@@ -114,11 +133,11 @@
             </div>
             <div class="contact-item">
               <span class="contact-label">Email</span>
-              <span class="contact-value"><a href="mailto:info@swsysint.com">info@swsysint.com</a></span>
+              <span class="contact-value"><a href="mailto:contact@swsysint.com">contact@swsysint.com</a></span>
             </div>
             <div class="contact-item">
               <span class="contact-label">Phone</span>
-              <span class="contact-value"><a href="tel:+1-000-000-0000">(000) 000-0000</a></span>
+              <span class="contact-value"><a href="tel:+1-682-247-4385">(682) 247-4385</a></span>
             </div>
           </div>
 
@@ -147,31 +166,5 @@
     <p>© 2026 Southwest Systems Integrators · Arlington, TX</p>
   </footer>
 
-  <!-- Confirmation Handler -->
-  <script>
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const form = e.target;
-      fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        const statusEl = document.getElementById("contactStatus");
-        statusEl.style.display = "block";
-
-        if (response.ok) {
-          form.reset();
-          statusEl.textContent = "✅ Thank you! We’ve received your request.";
-        } else {
-          statusEl.textContent = "⚠️ Something went wrong. Please try again.";
-        }
-      }).catch(() => {
-        const statusEl = document.getElementById("contactStatus");
-        statusEl.style.display = "block";
-        statusEl.textContent = "❌ Error submitting the form.";
-      });
-    });
-  </script>
 </body>
 </html>
