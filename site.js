@@ -1,4 +1,4 @@
-// site.js — shared site behaviors (safe for GitHub Pages)
+// site.js — shared site behaviors (safe for static hosting)
 (function () {
   "use strict";
 
@@ -19,21 +19,100 @@
     faders.forEach((el) => appearOnScroll.observe(el));
   }
 
-  // AJAX form submit + Turnstile reset
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contactForm");
-    const status = document.getElementById("contactStatus");
+  function showStatus(el, msg) {
+    if (!el) return;
+    el.style.display = "block";
+    el.textContent = msg;
+  }
+
+  function resetTurnstileIfPossible() {
+    if (window.turnstile && typeof window.turnstile.reset === "function") {
+      try { window.turnstile.reset(); } catch (_) {}
+    }
+  }
+
+  // Catalog lightbox (works for any page that includes the markup)
+  function wireLightbox() {
+    const lb = document.getElementById("lightbox");
+    const img = document.getElementById("lightboxImg");
+    if (!lb || !img) return;
+
+    const closeBtn = lb.querySelector(".lightbox-close");
+    if (!closeBtn) return;
+
+    function openLightbox(src) {
+      img.src = src;
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    }
+
+    function closeLightbox() {
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      img.src = "";
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll('a[data-lightbox="1"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const href = a.getAttribute("href");
+        if (href) openLightbox(href);
+      });
+    });
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lb.classList.contains("open")) closeLightbox();
+    });
+  }
+
+  // Generic AJAX submit handler for Formspree + Turnstile
+  async function wireAjaxForm({ formId, statusId, buttonId }) {
+    const form = document.getElementById(formId);
+    const status = document.getElementById(statusId);
+    const btn = buttonId ? document.getElementById(buttonId) : null;
 
     if (!form || !status) return;
 
-    function showStatus(msg) {
-      status.style.display = "block";
-      status.textContent = msg;
-    }
+    // If this form includes Turnstile, keep submit disabled until solved
+    const hasTurnstile = !!form.querySelector(".cf-turnstile");
+    if (btn && hasTurnstile) btn.disabled = true;
+
+    // Turnstile callbacks (global)
+    window.onTurnstileOk = function () {
+      if (btn) btn.disabled = false;
+      if (status) status.style.display = "none";
+    };
+    window.onTurnstileExpired = function () {
+      if (btn) btn.disabled = true;
+      showStatus(status, "⚠️ Verification expired. Please try again.");
+    };
+    window.onTurnstileError = function () {
+      if (btn) btn.disabled = true;
+      showStatus(status, "⚠️ Verification failed to load. Disable blockers or refresh.");
+    };
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      showStatus("Sending…");
+      showStatus(status, "Sending…");
+
+      // Turnstile token guard (only if widget exists)
+      if (hasTurnstile) {
+        const token = form.querySelector('input[name="cf-turnstile-response"]');
+        if (!token || !token.value) {
+          if (btn) btn.disabled = true;
+          showStatus(status, "⚠️ Please complete the verification.");
+          return;
+        }
+      }
 
       try {
         const res = await fetch(form.action, {
@@ -48,18 +127,38 @@
         }
 
         form.reset();
+        resetTurnstileIfPossible();
 
-        // Reset Turnstile widget
-        if (window.turnstile) {
-          try {
-            window.turnstile.reset(); // for public site Turnstile
-          } catch (_) {}
-        }
+        // If Turnstile is used, lock button again until new token
+        if (btn && hasTurnstile) btn.disabled = true;
 
-        showStatus("✅ Message sent. We’ll get back to you shortly.");
+        showStatus(status, "✅ Message sent. We’ll get back to you shortly.");
       } catch (err) {
-        showStatus("⚠️ Something went wrong. Please try again, or email/call us directly.");
+        // Fallback attempt: let browser try a normal submit (if CSP blocks fetch)
+        showStatus(status, "⚠️ Submit failed. Trying standard submit…");
+        try { form.submit(); } catch (_) {
+          showStatus(status, "❌ Error submitting the form. Please email/call us directly.");
+        }
       }
     });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Contact page
+    wireAjaxForm({
+      formId: "contactForm",
+      statusId: "contactStatus",
+      buttonId: null
+    });
+
+    // Catalog part pages
+    wireAjaxForm({
+      formId: "quoteForm",
+      statusId: "quoteStatus",
+      buttonId: "quoteBtn"
+    });
+
+    // Catalog lightbox
+    wireLightbox();
   });
 })();
