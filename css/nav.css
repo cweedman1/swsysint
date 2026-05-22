@@ -1,0 +1,75 @@
+/* ---------- Navbar ---------- */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1.1rem var(--pad);
+  background:linear-gradient(to bottom, #111, #222);
+  color:var(--gold);
+  position:sticky;
+  top:0;
+  z-index:10;
+
+  gap:1rem; /* responsive polish */
+}
+
+.logo a{ display:inline-flex; align-items:center; }
+.logo img{
+  display:block;
+  width:auto;
+  height:clamp(64px, 8vw, 90px);
+  max-width:min(220px, 44vw);
+  max-height:90px;
+  margin:.25rem .75rem;
+  object-fit:contain;
+  aspect-ratio:auto;
+  flex:0 0 auto;
+}
+
+/* Use gap for spacing instead of per-link margin */
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  align-items:center;
+  gap:.55rem 1.1rem;
+}
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  position:relative;
+  font-size:1.12rem;
+  font-weight:650;
+  letter-spacing:.5px;
+  transition:color .25s ease;
+
+  margin-left:0;           /* gaps handle spacing */
+  padding:.35rem .25rem;   /* bigger tap target */
+  border-radius:10px;
+}
+
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  bottom:-6px;
+  left:0;
+  width:0%;
+  height:2px;
+  background-color:var(--gold);
+  transition:width .25s ease;
+}
+
+.nav-links a:hover::after{ width:100%; }
+.nav-links a:hover{ color:var(--gold); }
+
+.nav-links a[aria-current="page"]{ color:var(--gold); }
+.nav-links a[aria-current="page"]::after{ width:100%; }
+
+@media (max-width: 860px){
+  .navbar{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .nav-links{ justify-content:center; }
+}

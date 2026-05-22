@@ -1,0 +1,60 @@
+/* =========================================================
+   HERO (Standard)
+   ========================================================= */
+.hero-landing{
+  --hero-image:url('../images/hero-fabrication.webp'); /* fallback */
+  position:relative;
+  padding:5.25rem var(--pad) 4.25rem;
+  min-height:60vh;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(to right, #111, #2a2a2a);
+  overflow:hidden;
+  text-align:center;
+}
+
+.hero-landing::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.68)),
+    var(--hero-image) center/cover no-repeat;
+  opacity:1;
+  transform:scale(1.02);
+}
+
+.hero-landing .inner{
+  position:relative;
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 var(--pad);
+}
+
+.hero-landing h1{
+  color:var(--gold);
+  font-size:clamp(2.35rem, 3.6vw, 3.55rem);
+  font-weight:950;
+  text-shadow:1px 1px 3px #000;
+  margin:0;
+}
+.hero-landing p{
+  margin-top:.85rem;
+  color:rgba(255,255,255,0.90);
+  font-size:clamp(1.12rem, 1.7vw, 1.45rem);
+  max-width:70ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Per-page hero images */
+.hero-home{ --hero-image:url('../images/hero-fabrication.webp'); }
+.hero-conveyors{ --hero-image:url('../images/landing/conv_hero.webp'); }
+.hero-equipment{ --hero-image:url('../images/landing/equip_hero.webp'); }
+.hero-services{ --hero-image:url('../images/hero_services.webp'); }
+.hero-legacy{ --hero-image:url('../images/legacy_hero.webp'); }
+.hero-catalog{ --hero-image:url('../images/catalog_hero.webp'); }
+.hero-contact{ --hero-image:url('../images/contact_hero.webp'); }
+
+/* Home hero crop */
+.hero-home::before{ background-position:center 32%; }

@@ -1,0 +1,27 @@
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 1024px){
+  .services-rail::before{ display:none; }
+
+  .service{
+    grid-template-columns:1fr;
+    gap:1rem;
+  }
+
+  .service .node{ display:none; }
+
+  .service .slab{ grid-template-columns:1fr; }
+  .service:nth-child(even) .slab{ grid-template-columns:1fr; }
+
+  .nav-links a{ font-size:1rem; }
+
+  .highlight-bar ul{
+    flex-direction:column;
+    gap:.8rem;
+  }
+}
+
+@media (max-width: 700px){
+  .catalog-grid{ grid-template-columns:1fr; }
+}

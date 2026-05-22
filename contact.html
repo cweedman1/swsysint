@@ -7,31 +7,35 @@
 
   <meta name="robots" content="index,follow"/>
   <meta name="description" content="Request a quote or ask a question. Southwest Systems Integrators responds same or next business day for material handling, conveyors, equipment, and service support." />
-  <link rel="canonical" href="https://swsysint.com/contact.html"/>
+  <link rel="canonical" href="https://www.swsysint.com/contact.html"/>
 
   <!-- Social -->
   <meta property="og:title" content="Contact | Southwest Systems Integrators"/>
-  <meta property="og:description" content="Quotes, service requests, and project questions — we respond fast and keep it practical."/>
-  <meta property="og:url" content="https://swsysint.com/contact.html"/>
+  <meta property="og:description" content="Request a quote or ask a question. Southwest Systems Integrators responds same or next business day for material handling, conveyors, equipment, and service support."/>
+  <meta property="og:url" content="https://www.swsysint.com/contact.html"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:image" content="https://swsysint.com/images/contact_hero.webp"/>
+  <meta property="og:image" content="https://www.swsysint.com/images/contact_hero.webp"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Contact | Southwest Systems Integrators"/>
-  <meta name="twitter:description" content="Quotes, service requests, and project questions — we respond fast and keep it practical."/>
-  <meta name="twitter:image" content="https://swsysint.com/images/contact_hero.webp"/>
+  <meta name="twitter:description" content="Request a quote or ask a question. Southwest Systems Integrators responds same or next business day for material handling, conveyors, equipment, and service support."/>
+  <meta name="twitter:image" content="https://www.swsysint.com/images/contact_hero.webp"/>
 
   <!-- Preload hero for LCP -->
-  <link rel="preload" as="image" href="https://swsysint.com/images/contact_hero.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="https://www.swsysint.com/images/contact_hero.webp" fetchpriority="high">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="style.css?v=20260121-1"/>
+  <link rel="stylesheet" href="css/main.css?v=20260522-2"/>
 
   <!-- Cloudflare Turnstile -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <!-- Shared site behaviors (AJAX forms + lightbox) -->
-  <script src="site.js?v=20260121-1" defer></script>
+  <script src="site.js?v=20260522-1" defer></script>
+
+  <!-- SSI structured data -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ContactPage","@id":"https://www.swsysint.com/contact.html#webpage","url":"https://www.swsysint.com/contact.html","name":"Contact","description":"Request a quote or ask a question. Southwest Systems Integrators responds same or next business day for material handling, conveyors, equipment, and service support.","isPartOf":{"@id":"https://www.swsysint.com/#website"},"publisher":{"@id":"https://www.swsysint.com/#organization"}},{"@type":"ContactPoint","@id":"https://www.swsysint.com/contact.html#contact","telephone":"+1-682-247-4385","email":"contact@swsysint.com","contactType":"sales and service requests","areaServed":"US"},{"@type":"BreadcrumbList","@id":"https://www.swsysint.com/contact.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.swsysint.com/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://www.swsysint.com/contact.html"}]}]}</script>
+  <!-- /SSI structured data -->
 </head>
 <body>
 
@@ -39,7 +43,7 @@
   <header class="navbar">
     <div class="logo">
       <a href="index.html" aria-label="Home">
-        <img src="images/ssi_logo.webp" alt="SSI Logo" loading="eager" decoding="async">
+        <img src="images/ssi_logo.webp" alt="SSI Logo" loading="eager" decoding="async" width="1024" height="1024">
       </a>
     </div>
 
@@ -81,7 +85,7 @@
           <p class="contact-muted">Preferred: include photos, drawings, part numbers, and site timing.</p>
 
           <form id="contactForm" class="quote-form" action="https://formspree.io/f/xdaaaavj" method="POST" novalidate>
-            <input type="hidden" name="page_url" value="https://swsysint.com/contact.html">
+            <input type="hidden" name="page_url" value="https://www.swsysint.com/contact.html">
 
             <!-- Honeypot -->
             <input type="text" name="company_site" tabindex="-1" autocomplete="off"
@@ -118,7 +122,7 @@
               We respond same or next business day. If it’s urgent, call and mention “time-sensitive.”
             </p>
 
-            <p id="contactStatus" class="quote-consent" style="display:none;"></p>
+            <p id="contactStatus" class="quote-consent" style="display:none;" aria-live="polite"></p>
           </form>
         </div>
 
