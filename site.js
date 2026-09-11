@@ -102,6 +102,16 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      // Forms opt out of automatic browser validation so the AJAX handler can
+      // control submission. Restore the required-field and type checks before
+      // any request (or fallback submission) is attempted.
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        showStatus(status, "⚠️ Please complete the required fields.");
+        return;
+      }
+
       showStatus(status, "Sending…");
 
       // Turnstile token guard (only if widget exists)
